@@ -1,9 +1,8 @@
 import { app, shell, BrowserWindow, ipcMain, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
+import { initDB, addForm, getAllForms } from '../data/models'
 import icon from '../../resources/icon.png?asset'
-import { writeFile } from 'fs'
-import { jsPDF } from 'jspdf'
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -44,7 +43,7 @@ function createWindow(): void {
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
-
+  initDB()
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils
@@ -60,20 +59,23 @@ app.whenReady().then(() => {
     })
   })
 
-  ipcMain.handle('pdf-save', async (_, args) => {
-    // const doc = new jsPDF('l', 'pt', 'a4')
-    // const html = doc.html(args.html, {
-    //   x: 15,
-    //   y: 15,
-    //   margin: [2, 2, 2, 2]
-    // })
-    // // await doc.text(args.html, 15, 15)
-    // const data = await doc.output('arraybuffer')
-    // const buffer = await Buffer.from(data)
-    // await writeFile(args.filepath, buffer, () => {
-    //   return true
-    // })
+  ipcMain.handle('save-db', async (_, args) => {
+    try {
+      addForm(args.title, args.date, args.items)
+    } catch (err) {
+      console.log(err)
+    }
   })
+
+  ipcMain.handle('getAllForms', async () => {
+    try {
+      const forms = await getAllForms()
+      return forms
+    } catch (err) {
+      console.log(err)
+    }
+  })
+
   createWindow()
 
   app.on('activate', function () {

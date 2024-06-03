@@ -110,8 +110,6 @@ export default function InputForm(): JSX.Element {
   }
   return (
     <ThemeProvider theme={theme}>
-      {/* <Button onClick={() => console.log(items)}>Get Data</Button>
-      <Button onClick={resetAll}>Reset Data</Button> */}
       <form action="" onSubmit={(e) => e.preventDefault()} className="flex flex-col ">
         <Box sx={{ flexGrow: 1 }}>
           <Grid container spacing={2} className="p-4">

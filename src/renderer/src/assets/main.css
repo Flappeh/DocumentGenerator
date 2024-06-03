@@ -4,6 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* add following lines */
+@layer base {
+  img {
+    @apply inline-block;
+  }
+}
+
 @font-face {
   font-family: 'Poppins-Black';
   src:

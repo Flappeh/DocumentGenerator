@@ -7,5 +7,14 @@
   },
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "database": "${workspaceFolder:DocumentGen}/src/data/storage.db",
+      "name": "DB Sekarang"
+    }
+  ],
+  "sqltools.useNodeRuntime": true
 }

@@ -6,3 +6,9 @@ declare global {
     api: unknown
   }
 }
+
+interface ItemDataProps {
+  id: number
+  itemName: string
+  quantity: number
+}

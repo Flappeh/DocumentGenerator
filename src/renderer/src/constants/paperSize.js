@@ -1,33 +1,45 @@
 const paperSize = [
   {
     name: 'A4',
-    width: 210,
-    height: 297
+    mmWidth: 210,
+    mmHeight: 297,
+    pxWidth: 794,
+    pxHeight: 1123
   },
   {
     name: 'A5',
-    width: 148,
-    height: 210
+    mmWidth: 148,
+    mmHeight: 210,
+    pxWidth: 559,
+    pxHeight: 794
   },
   {
     name: 'A6',
-    width: 105,
-    height: 148
+    mmWidth: 105,
+    mmHeight: 148,
+    pxWidth: 397,
+    pxHeight: 559
   },
   {
     name: 'B4',
-    width: 257,
-    height: 364
+    mmWidth: 257,
+    mmHeight: 364,
+    pxWidth: 945,
+    pxHeight: 1334
   },
   {
     name: 'B5',
-    width: 182,
-    height: 257
+    mmWidth: 182,
+    mmHeight: 257,
+    pxWidth: 665,
+    pxHeight: 945
   },
   {
     name: 'B6',
-    width: 128,
-    height: 128
+    mmWidth: 128,
+    mmHeight: 128,
+    pxWidth: 472,
+    pxHeight: 665
   }
 ]
 export default paperSize

@@ -1,10 +1,11 @@
 /// <reference types="vite/client" />
 interface PaperSizeProps {
   name: string
-  width: number
-  height: number
+  mmWidth: number
+  mmHeight: number
+  pxWidth: number
+  pxHeight: number
 }
-
 interface ItemDataProps {
   id: number
   itemName: string

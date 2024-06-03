@@ -1,7 +1,9 @@
 interface PaperSizeProps {
   name: string
-  width: number
-  height: number
+  mmWidth: number
+  mmHeight: number
+  pxWidth: number
+  pxHeight: number
 }
 
 declare const paperSize: PaperSizeProps

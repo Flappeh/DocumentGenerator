@@ -13,30 +13,37 @@ export default function FormField(): JSX.Element {
     console.log(currentSize)
   }
 
-  const { setDate, setTitle } = useFormStore()
-  const { resetItems } = useItemStore()
+  const { setDate, setTitle, title, date } = useFormStore()
+  const { resetItems, items } = useItemStore()
   const resetAll = () => {
     resetItems()
     setTitle('')
     setDate(new Date())
   }
   const [currentSize, setCurrentSize] = useState<PaperSizeProps>({
-    name: 'a4',
-    width: 210,
-    height: 297
+    name: 'A4',
+    mmWidth: 210,
+    mmHeight: 297,
+    pxWidth: 794,
+    pxHeight: 1123
   })
-  const saveFile = async () => {
+  const saveFile = async (): void => {
     try {
-      const paper = document.getElementById('dokumen')
+      const paper = document.getElementById('documentContent')
       const doc = new jsPDF({
         orientation: 'p',
-        unit: 'mm'
+        unit: 'px',
+        format: currentSize.name,
+        hotfixes: ['px_scaling']
       })
-      doc.html(paper!.innerHTML, {
-        x: 15,
-        y: 15,
-        callback: (pdf) => {
-          pdf.save('saved.pdf')
+      await doc.html(paper!.innerHTML, {
+        x: 0,
+        y: 0,
+        jsPDF: doc,
+        callback: async (pdf) => {
+          await pdf.save(`${title}.pdf`)
+          await window.api.saveToDB(title, date.getTime(), items)
+          resetAll()
         }
       })
     } catch (e) {
@@ -85,8 +92,11 @@ export default function FormField(): JSX.Element {
           <InputForm></InputForm>
         </div>
       </section>
-      <section className="max-h-full min-h-[40%] h-[60%] flex justify-center items-center p-3  ">
-        <PaperTemplate size={currentSize} />
+      <section>
+        <PaperTemplate size={currentSize} isPreview />
+      </section>
+      <section id="documentContent" style={{ display: 'none' }}>
+        <PaperTemplate size={currentSize} isPreview={false} />
       </section>
     </div>
   )

@@ -6,6 +6,7 @@ type FormStore = {
   date: Date
   setTitle: (title: string) => void
   setDate: (date: Date) => void
+  resetForm: () => void
 }
 export const useFormStore = create<FormStore>((set) => ({
   id: 0,
@@ -16,5 +17,8 @@ export const useFormStore = create<FormStore>((set) => ({
   },
   setTitle: (data: string): void => {
     set(() => ({ title: data }))
+  },
+  resetForm: (): void => {
+    set(() => ({ title: '', date: new Date() }))
   }
 }))

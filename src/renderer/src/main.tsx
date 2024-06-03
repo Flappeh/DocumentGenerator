@@ -25,9 +25,9 @@ function App(): JSX.Element {
       <div id="app">
         <Sidebar></Sidebar>
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/formfield" element={<FormField />} />
-          <Route path="/history" element={<History />} />
+          <Route path="/" element={<Home />} key={'home'} />
+          <Route path="/formfield" element={<FormField />} key={'formfield'} />
+          <Route path="/history" element={<History />} key={'history'} />
         </Routes>
       </div>
     </Router>

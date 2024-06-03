@@ -27,9 +27,7 @@ export default function InputBox({
           label={title}
           required
           value={value}
-          defaultValue={currentValue}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setCurrentValue(event.target.value)
             inputType === 'text'
               ? modifyItem(id, event.target.value)
               : modifyItem(id, Number(event.target.value))
@@ -48,10 +46,8 @@ export default function InputBox({
         <TextField
           id={title}
           label={title}
-          defaultValue={currentValue}
           value={value}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
-            setCurrentValue(event.target.value)
             inputType === 'text'
               ? modifyItem(id, event.target.value)
               : modifyItem(id, Number(event.target.value))
